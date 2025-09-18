@@ -8,10 +8,11 @@ use App\Models\User;
 use App\Models\PrintJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $user = Auth::user();
         

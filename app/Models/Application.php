@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Application extends Model
 {
@@ -20,37 +23,37 @@ class Application extends Model
         'printed_at' => 'datetime',
     ];
 
-    public function citizen()
+    public function citizen(): BelongsTo
     {
         return $this->belongsTo(Citizen::class);
     }
 
-    public function registrar()
+    public function registrar(): BelongsTo
     {
         return $this->belongsTo(User::class, 'registrar_id');
     }
 
-    public function supervisor()
+    public function supervisor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'supervisor_id');
     }
 
-    public function documents()
+    public function documents(): HasMany
     {
         return $this->hasMany(Document::class);
     }
 
-    public function biometrics()
+    public function biometrics(): HasOne
     {
         return $this->hasOne(Biometric::class);
     }
 
-    public function printJobs()
+    public function printJobs(): HasMany
     {
         return $this->hasMany(PrintJob::class);
     }
 
-    public function latestPrintJob()
+    public function latestPrintJob(): HasOne
     {
         return $this->hasOne(PrintJob::class)->latestOfMany();
     }

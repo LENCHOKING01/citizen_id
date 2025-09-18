@@ -103,7 +103,7 @@
                         @endif
                     </div>
                     
-                    @if($application->documents->count() > 0)
+                    @if($application->documents && $application->documents->count() > 0)
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             @foreach($application->documents as $document)
                                 <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
@@ -153,8 +153,14 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-500 dark:text-gray-400">Photo</label>
                                 <div class="mt-2">
-                                    <img src="{{ Storage::url($application->biometrics->photo_path) }}" 
-                                        alt="Citizen Photo" class="w-32 h-32 object-cover rounded-lg border">
+                                    @if($application->citizen->photo_path)
+                                        <img src="{{ Storage::url($application->citizen->photo_path) }}" 
+                                            alt="Citizen Photo" class="w-32 h-32 object-cover rounded-lg border">
+                                    @else
+                                        <div class="w-32 h-32 bg-gray-200 dark:bg-gray-700 rounded-lg border flex items-center justify-center">
+                                            <span class="text-gray-500 dark:text-gray-400 text-xs">No Photo</span>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div>
@@ -165,7 +171,7 @@
                                     </span>
                                 </p>
                                 <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                                    Captured on {{ $application->biometrics->captured_at->format('F d, Y H:i') }}
+                                    Captured on {{ $application->biometrics->created_at ? $application->biometrics->created_at->format('F d, Y H:i') : 'Unknown' }}
                                 </p>
                             </div>
                         </div>

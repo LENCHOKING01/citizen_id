@@ -26,13 +26,79 @@
         .id-card {
             width: 340px;
             height: 214px;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 20%, #334155 40%, #475569 60%, #64748b 80%, #94a3b8 100%);
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
             transition: transform 0.3s ease;
+            border: 3px solid rgba(255,215,0,0.5);
+        }
+        
+        .zigzag-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(45deg, transparent 25%, rgba(255,215,0,0.1) 25%, rgba(255,215,0,0.1) 50%, transparent 50%, transparent 75%, rgba(255,215,0,0.1) 75%),
+                linear-gradient(-45deg, transparent 25%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.05) 75%);
+            background-size: 32px 32px, 24px 24px;
+            background-position: 0 0, 12px 12px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Ethiopian Flag */
+        .ethiopian-flag {
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            width: 64px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 4;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+        }
+        
+        .flag-stripe {
+            height: 33.33%;
+            width: 100%;
+            position: relative;
+        }
+        
+        .flag-green { background-color: #009639; }
+        .flag-yellow { 
+            background-color: #FEDD00; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .flag-red { background-color: #DA020E; }
+        
+        .ethiopian-emblem-circle {
+            width: 22px;
+            height: 22px;
+            background: #0066CC;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .ethiopian-star {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            background: #FFD700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
 
         .id-card:hover {
@@ -56,43 +122,45 @@
         /* Header with Logo */
         .card-header {
             position: absolute;
-            top: 0;
+            top: 32px;
             left: 0;
             right: 0;
             height: 45px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             padding: 0 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
         }
 
         .logo {
             width: 32px;
             height: 32px;
-            background: #ffffff;
+            background: #FFD700;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 12px;
             color: #1e40af;
             margin-right: 10px;
         }
 
         .org-name {
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            color: #FFD700;
+            font-size: 11px;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.5px;
         }
 
         /* Main Content Area */
         .card-content {
             position: absolute;
-            top: 45px;
+            top: 77px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -295,14 +363,28 @@
 
     <div class="id-card-container">
         <div class="id-card">
+            <!-- Zigzag Pattern -->
+            <div class="zigzag-pattern"></div>
+            
             <!-- Security Features -->
             <div class="security-strip"></div>
             <div class="hologram"></div>
             
+            <!-- Ethiopian Flag -->
+            <div class="ethiopian-flag">
+                <div class="flag-stripe flag-green"></div>
+                <div class="flag-stripe flag-yellow">
+                    <div class="ethiopian-emblem-circle">
+                        <div class="ethiopian-star"></div>
+                    </div>
+                </div>
+                <div class="flag-stripe flag-red"></div>
+            </div>
+            
             <!-- Header with Organization Logo -->
             <div class="card-header">
-                <div class="logo">CID</div>
-                <div class="org-name">CITIZEN IDENTIFICATION DEPARTMENT</div>
+                <div class="logo">ETH</div>
+                <div class="org-name">FEDERAL DEMOCRATIC REPUBLIC OF ETHIOPIA</div>
             </div>
             
             <!-- Main Content -->
